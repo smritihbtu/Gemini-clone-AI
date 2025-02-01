@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IoMdCompass } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import { FaLightbulb } from "react-icons/fa";
@@ -6,9 +6,23 @@ import { FaLaptopCode, FaMicrophone, FaReact } from 'react-icons/fa6';
 import { DiJavascript } from 'react-icons/di';
 import { MdInsertPhoto } from 'react-icons/md';
 import { IoSend } from 'react-icons/io5';
+import { context } from '../context/context';
 
 
 const MainContent = () => {
+    const{
+        input,
+        setInput,
+        recentPrompt,
+        setRecentPrompt,
+        prevPrompt,
+        setPrevPrompt,
+        showResult,
+        loading,
+        resultData,
+        onSent,
+
+    } = useContext(context)
   return (
     <div className="flex-1 min-h-screen pb-[15vh] relative">
         <div className="flex items-center justify-between text-xl p-5 text-slate-700">
@@ -61,12 +75,16 @@ const MainContent = () => {
                     <input 
                     type="text"
                     placeholder="Enter a prompt here...."
-                    className="flex-1 bg-transparent border-none outline-none p-2 text-lg" />
+                    className="flex-1 bg-transparent border-none outline-none p-2 text-lg" 
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}/>
 
                     <div className="flex gap-4 items-center">
                     <MdInsertPhoto className="text-2xl cursor-pointer" />
                     <FaMicrophone className="text-2xl cursor-pointer" />
-                    <IoSend className="text-2xl cursor-pointer" />
+                    <IoSend 
+                    onClick={()=>onSent(input)}
+                    className="text-2xl cursor-pointer" />
                     </div>
                 </div>
                 <p className="text-sm my-4 mx-auto text-center font-[500] text-slate-600">

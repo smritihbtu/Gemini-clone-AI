@@ -15,7 +15,7 @@ import{
     temperature: 1,
     topP: 0.95,
     topK: 40,
-    maxOutputTokens: 8192,
+    maxOutputTokens: 1024,
     responseMimeType: "text/plain",
   };
   
@@ -29,6 +29,8 @@ import{
     const result = await chatSession.sendMessage(prompt);
     const response = result.response.text()
     console.log(result.response.text());
+    
   }
   
  export default run
+
